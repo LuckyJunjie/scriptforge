@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: scriptforge
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/scriptforge?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      database: 0
+
+# JWT 配置
+jwt:
+  secret: scriptforge-secret-key-2026-very-long-secret-key-for-jwt-token-generation
+  expiration: 7200000  # 2小时 (毫秒)
+  refresh-expiration: 604800000  # 7天 (毫秒)
+
+# AI 配置
+ai:
+  providers:
+    - name: gpt-4
+      api-key: ${OPENAI_API_KEY:}
+      endpoint: https://api.openai.com/v1
+      model: gpt-4
+    - name: claude
+      api-key: ${CLAUDE_API_KEY:}
+      endpoint: https://api.anthropic.com/v1
+      model: claude-3-5-sonnet-20241022
+    - name: minimax
+      api-key: ${MINIMAX_API_KEY:}
+      endpoint: https://api.minimax.chat/v1
+      model: abab6.5s-chat
+
+# CORS 配置
+cors:
+  allowed-origins: http://localhost:5173,http://localhost:80
+
+# 文件上传配置
+file:
+  upload-dir: ./uploads
+  max-size: 10MB

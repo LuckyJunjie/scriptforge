@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 4: 剧情树编辑器 | ScriptForge</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --bg-dark: #0f172a; --bg-card: #1e293b; --bg-input: #334155; --text-primary: #f8fafc; --text-secondary: #94a3b8; --text-muted: #64748b; --border: #334155; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-dark); color: var(--text-primary); }
+        .header { background: rgba(30,41,59,0.95); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 24px; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .phase-badge { background: var(--primary); padding: 8px 16px; border-radius: 20px; font-size: 14px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px; }
+        .hero { text-align: center; padding: 40px 0; }
+        .hero h1 { font-size: 42px; margin-bottom: 16px; }
+        .hero p { font-size: 18px; color: var(--text-secondary); }
+        .status-card { background: var(--bg-card); border: 2px solid var(--primary); border-radius: 20px; padding: 32px; margin-bottom: 32px; text-align: center; }
+        .status-card h2 { color: var(--primary); font-size: 24px; margin-bottom: 8px; }
+        .editor-layout { display: grid; grid-template-columns: 260px 1fr 280px; gap: 20px; background: var(--bg-card); border-radius: 16px; padding: 24px; }
+        .tree-panel { background: var(--bg-input); border-radius: 12px; padding: 20px; }
+        .tree-node { padding: 10px 14px; border-radius: 8px; margin-bottom: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .tree-node:hover { background: var(--bg-card); }
+        .tree-node.active { background: rgba(99,102,241,0.2); color: var(--primary); }
+        .tree-indent { width: 16px; display: inline-block; }
+        .edit-panel { }
+        .scene-header { display: flex; gap: 12px; margin-bottom: 20px; }
+        .scene-tag { background: var(--bg-input); padding: 8px 16px; border-radius: 8px; font-size: 13px; }
+        .content-block { background: var(--bg-input); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+        .content-label { font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 12px; text-transform: uppercase; }
+        .choice-options { display: flex; flex-direction: column; gap: 12px; }
+        .choice-option { background: var(--bg-card); border: 2px solid var(--border); border-radius: 12px; padding: 16px; }
+        .ai-panel { background: var(--bg-input); border-radius: 12px; padding: 20px; }
+        .ai-tools { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 20px; }
+        .ai-tool-btn { background: var(--bg-card); border: none; border-radius: 8px; padding: 14px; color: var(--text-secondary); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; }
+        .ai-tool-btn:hover { background: var(--primary); color: white; }
+        .nav-links { display: flex; justify-content: center; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+        .nav-link { padding: 12px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text-secondary); text-decoration: none; }
+        .nav-link:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        footer { text-align: center; padding: 40px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">🎬 ScriptForge</div>
+        <div class="phase-badge">🔄 Phase 4 进行中</div>
+    </header>
+    <div class="container">
+        <section class="hero">
+            <h1>Phase 4: 剧情树编辑器</h1>
+            <p>可视化编辑 · 拖拽排序 · 角色管理</p>
+        </section>
+        <div class="status-card">
+            <h2>🔄 开发进行中</h2>
+            <p>树形数据结构 + 编辑器 UI + 角色系统</p>
+        </div>
+        <div class="editor-layout">
+            <div class="tree-panel">
+                <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">剧情大纲</div>
+                <div class="tree-node active">📁 章节1</div>
+                <div style="padding-left: 20px;">
+                    <div class="tree-node">├─ 分支A</div>
+                    <div class="tree-node">├─ 分支B</div>
+                    <div class="tree-node">└─ 分支C</div>
+                </div>
+                <div class="tree-node">📁 章节2</div>
+                <div class="tree-node">📁 章节3</div>
+                <button style="width: 100%; margin-top: 16px; padding: 12px; background: var(--bg-card); border: none; border-radius: 8px; color: var(--text-muted); cursor: pointer;">+ 添加章节</button>
+            </div>
+            <div class="edit-panel">
+                <div class="scene-header">
+                    <span class="scene-tag">🏠 场景: 主角家中</span>
+                    <span class="scene-tag">🌙 时间: 深夜</span>
+                </div>
+                <div class="content-block">
+                    <div class="content-label">动作描述</div>
+                    <div style="color: var(--text-secondary);">门外传来急促的敲门声...主角从床上起身...</div>
+                </div>
+                <div class="content-block">
+                    <div class="content-label">对白</div>
+                    <div style="color: var(--text-secondary);">主角："谁啊？这大半夜的..."</div>
+                </div>
+                <div class="content-block">
+                    <div class="content-label">选项</div>
+                    <div class="choice-options">
+                        <div class="choice-option"><strong>A. 开门去看看</strong></div>
+                        <div class="choice-option"><strong>B. 不予理会</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ai-panel">
+                <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">AI 协创工具</div>
+                <div class="ai-tools">
+                    <button class="ai-tool-btn">✍️ 续写</button>
+                    <button class="ai-tool-btn">🔄 润色</button>
+                    <button class="ai-tool-btn">🧩 补全</button>
+                    <button class="ai-tool-btn">❓ 提问</button>
+                </div>
+                <div style="background: var(--bg-dark); border-radius: 12px; padding: 16px;">
+                    <div style="font-size: 13px; font-weight: 600; margin-bottom: 12px;">💡 续写建议</div>
+                    <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+                        <div style="margin-bottom: 10px;"><strong>1.</strong> 主角开门后发现...</div>
+                        <div style="margin-bottom: 10px;"><strong>2.</strong> 敲门的是债主...</div>
+                        <div><strong>3.</strong> 敲门的是陌生美女...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="phase4-report.html" class="nav-link">📄 详细报告</a>
+            <a href="index.html" class="nav-link">🏠 返回总览</a>
+            <a href="phase5-preview.html" class="nav-link">➡️ Phase 5 预览</a>
+        </div>
+    </div>
+    <footer><p>🎬 ScriptForge - AI 互动剧本工具</p></footer>
+</body>
+</html>

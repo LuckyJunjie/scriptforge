@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 5: 阅读器 + 分享 | ScriptForge</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --bg-dark: #0f172a; --bg-card: #1e293b; --bg-input: #334155; --text-primary: #f8fafc; --text-secondary: #94a3b8; --border: #334155; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg-dark); color: var(--text-primary); }
+        .header { background: rgba(30,41,59,0.95); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 24px; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .phase-badge { background: var(--warning); padding: 8px 16px; border-radius: 20px; font-size: 14px; color: #000; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+        .hero { text-align: center; padding: 40px 0; }
+        .hero h1 { font-size: 42px; margin-bottom: 16px; }
+        .hero p { color: var(--text-secondary); }
+        .status-card { background: var(--bg-card); border: 2px solid var(--warning); border-radius: 20px; padding: 32px; margin-bottom: 32px; text-align: center; }
+        .status-card h2 { color: var(--warning); font-size: 24px; margin-bottom: 8px; }
+        
+        .phone-frame { width: 320px; height: 620px; background: #000; border-radius: 40px; padding: 12px; margin: 30px auto; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .phone-screen { width: 100%; height: 100%; background: var(--bg-dark); border-radius: 32px; overflow: hidden; position: relative; }
+        .phone-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+        .phone-title { font-size: 14px; font-weight: 600; }
+        .phone-content { padding: 20px; }
+        .phone-scene { font-size: 14px; font-weight: 600; color: var(--warning); margin-bottom: 16px; }
+        .phone-text { font-size: 14px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .phone-divider { height: 1px; background: var(--border); margin: 20px 0; }
+        .phone-question { font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .phone-choice { background: var(--bg-card); border: 2px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 12px; transition: all 0.2s; }
+        .phone-choice:hover { border-color: var(--primary); }
+        .phone-choice.selected { border-color: var(--primary); background: rgba(99,102,241,0.1); }
+        .phone-percent { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+        .phone-footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px; background: var(--bg-card); display: flex; justify-content: space-around; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); }
+        
+        .share-card { background: var(--bg-card); border-radius: 16px; padding: 32px; margin: 24px 0; }
+        .share-url { background: var(--bg-input); padding: 16px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+        .share-url span { font-family: monospace; color: var(--primary); }
+        
+        .nav-links { display: flex; justify-content: center; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+        .nav-link { padding: 12px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text-secondary); text-decoration: none; }
+        .nav-link:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        footer { text-align: center; padding: 40px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">🎬 ScriptForge</div>
+        <div class="phase-badge">⏳ 待开发</div>
+    </header>
+    <div class="container">
+        <section class="hero">
+            <h1>Phase 5: 阅读器 + 分享</h1>
+            <p>移动端阅读器 · 分享链接系统 · 数据统计</p>
+        </section>
+        <div class="status-card">
+            <h2>⏳ 待开发</h2>
+            <p>Phase 4 完成后开始</p>
+        </div>
+        
+        <h2 style="text-align:center;margin:40px 0 20px;">📱 阅读器预览</h2>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="phone-header">
+                    <span style="color:var(--primary)">← 返回</span>
+                    <span class="phone-title">赘婿逆袭记</span>
+                    <span>📊</span>
+                </div>
+                <div class="phone-content">
+                    <div class="phone-scene">【深夜·主角家中】</div>
+                    <div class="phone-text">门外传来急促的敲门声...<br><br>主角："谁啊？这大半夜的..."</div>
+                    <div class="phone-divider"></div>
+                    <div class="phone-question">你想怎么做？</div>
+                    <div class="phone-choice selected"><strong>A. 开门去看看</strong><div class="phone-percent">56% 的读者选择了这个选项</div></div>
+                    <div class="phone-choice"><strong>B. 不予理会</strong><div class="phone-percent">44% 的读者选择了这个选项</div></div>
+                </div>
+                <div class="phone-footer">
+                    <span>👁 1.2k</span>
+                    <span>💬 23</span>
+                    <span>⭐ 4.8</span>
+                    <span>⏱ 10min</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="share-card">
+            <h3>🔗 分享设置</h3>
+            <div class="share-url">
+                <span>https://scriptforge.app/s/abc123</span>
+                <button style="background:var(--primary);border:none;padding:8px 16px;border-radius:6px;color:white;cursor:pointer;">复制</button>
+            </div>
+            <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+                <label style="display:flex;align-items:center;gap:8px;"><input type="radio" name="share" checked> 公开分享</label>
+                <label style="display:flex;align-items:center;gap:8px;"><input type="radio" name="share"> 私密分享 (密码)</label>
+            </div>
+        </div>
+        
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">🏠 返回总览</a>
+            <a href="phase4-preview.html" class="nav-link">⬅️ Phase 4</a>
+            <a href="phase6-preview.html" class="nav-link">➡️ Phase 6</a>
+        </div>
+    </div>
+    <footer><p>🎬 ScriptForge - AI 互动剧本工具</p></footer>
+</body>
+</html>

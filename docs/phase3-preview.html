@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 3: AI 生成核心 | ScriptForge</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --secondary: #8b5cf6;
+            --success: #10b981; --warning: #f59e0b; --error: #ef4444;
+            --bg-dark: #0f172a; --bg-card: #1e293b; --bg-input: #334155;
+            --text-primary: #f8fafc; --text-secondary: #94a3b8; --text-muted: #64748b;
+            --border: #334155;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg-dark); color: var(--text-primary); }
+        
+        .header { background: rgba(30, 41, 59, 0.95); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 24px; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .phase-badge { background: var(--success); padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+        
+        .hero { text-align: center; padding: 40px 0; }
+        .hero h1 { font-size: 42px; margin-bottom: 16px; }
+        .hero p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
+        
+        .status-card { background: var(--bg-card); border: 2px solid var(--success); border-radius: 20px; padding: 32px; margin-bottom: 32px; text-align: center; }
+        .status-card h2 { color: var(--success); font-size: 24px; margin-bottom: 8px; }
+        
+        .models { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 40px; }
+        .model-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; transition: all 0.3s; }
+        .model-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .model-icon { font-size: 36px; margin-bottom: 12px; }
+        .model-name { font-weight: 600; margin-bottom: 4px; }
+        .model-desc { font-size: 13px; color: var(--text-muted); }
+        
+        .ai-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 40px; }
+        .ai-tool { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; }
+        .ai-tool-icon { width: 56px; height: 56px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; }
+        .ai-tool h3 { margin-bottom: 8px; }
+        .ai-tool p { font-size: 13px; color: var(--text-secondary); }
+        
+        .generating { background: var(--bg-card); border-radius: 16px; padding: 40px; text-align: center; margin: 24px 0; }
+        .spinner { width: 60px; height: 60px; border: 4px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 24px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .progress-bar { background: var(--bg-input); height: 8px; border-radius: 4px; overflow: hidden; margin-top: 20px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); width: 60%; transition: width 0.3s; }
+        
+        .suggestions { background: var(--bg-card); border-radius: 16px; padding: 24px; margin: 24px 0; }
+        .suggestions h3 { margin-bottom: 16px; }
+        .suggestion { background: var(--bg-input); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+        .suggestion-num { color: var(--primary); font-weight: 600; margin-right: 8px; }
+        
+        .nav-links { display: flex; justify-content: center; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+        .nav-link { padding: 12px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
+        .nav-link:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        
+        footer { text-align: center; padding: 40px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">🎬 ScriptForge</div>
+        <div class="phase-badge">✅ Phase 3 已完成</div>
+    </header>
+    
+    <div class="container">
+        <section class="hero">
+            <h1>Phase 3: AI 生成核心</h1>
+            <p>多模型切换 · 一句话生成 · AI 协创工具</p>
+        </section>
+        
+        <div class="status-card">
+            <h2>✅ 开发完成</h2>
+            <p>多模型适配器 + AI 生成 + 续写/润色/检查</p>
+        </div>
+        
+        <h2 style="margin-bottom: 24px;">🤖 支持的 AI 模型</h2>
+        <div class="models">
+            <div class="model-card">
+                <div class="model-icon">🧠</div>
+                <div class="model-name">GPT-4o</div>
+                <div class="model-desc">OpenAI · 综合能力强</div>
+            </div>
+            <div class="model-card">
+                <div class="model-icon">💎</div>
+                <div class="model-name">Claude 3.5</div>
+                <div class="model-desc">Anthropic · 创意丰富</div>
+            </div>
+            <div class="model-card">
+                <div class="model-icon">🚀</div>
+                <div class="model-name">MiniMax</div>
+                <div class="model-desc">中文优化 · 性价比高</div>
+            </div>
+            <div class="model-card">
+                <div class="model-icon">🔮</div>
+                <div class="model-name">DeepSeek</div>
+                <div class="model-desc">开源低价 · 高并发</div>
+            </div>
+        </div>
+        
+        <h2 style="margin-bottom: 24px;">✍️ AI 协创工具</h2>
+        <div class="ai-tools">
+            <div class="ai-tool">
+                <div class="ai-tool-icon">✍️</div>
+                <h3>续写</h3>
+                <p>输入上下文，AI 续写 3 种可能</p>
+            </div>
+            <div class="ai-tool">
+                <div class="ai-tool-icon">🔄</div>
+                <h3>润色</h3>
+                <p>一键改写成不同风格</p>
+            </div>
+            <div class="ai-tool">
+                <div class="ai-tool-icon">🧩</div>
+                <h3>补全</h3>
+                <p>自动补充过渡/冲突/悬念</p>
+            </div>
+            <div class="ai-tool">
+                <div class="ai-tool-icon">❓</div>
+                <h3>提问</h3>
+                <p>AI 给出角色下一步建议</p>
+            </div>
+            <div class="ai-tool">
+                <div class="ai-tool-icon">🚫</div>
+                <h3>检查</h3>
+                <p>检测人设/逻辑/节奏问题</p>
+            </div>
+        </div>
+        
+        <div class="generating">
+            <div class="spinner"></div>
+            <h3>🎬 AI 正在创作中...</h3>
+            <p style="color: var(--text-secondary); margin-top: 8px;">"废物赘婿逆袭打脸" × 短剧 + 爽文</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%;"></div>
+            </div>
+            <p style="margin-top: 16px; font-size: 14px; color: var(--text-muted);">✓ 世界观设定 · ✓ 角色创建 · → 生成分支剧情中...</p>
+        </div>
+        
+        <div class="suggestions">
+            <h3>💡 AI 续写建议 (选择一种继续)</h3>
+            <div class="suggestion">
+                <span class="suggestion-num">1.</span> 主角开门后，发现是多年不见的老同学... → 触发: 回忆杀 + 老同学身份揭秘
+            </div>
+            <div class="suggestion">
+                <span class="suggestion-num">2.</span> 敲门的是债主，主角被迫... → 触发: 债务危机 + 逆袭动机
+            </div>
+            <div class="suggestion">
+                <span class="suggestion-num">3.</span> 敲门的是个陌生美女，主角老婆误会... → 触发: 家庭矛盾 + 打脸爽点
+            </div>
+        </div>
+        
+        <div class="nav-links">
+            <a href="phase3-report.html" class="nav-link">📄 详细报告</a>
+            <a href="index.html" class="nav-link">🏠 返回总览</a>
+            <a href="phase4-preview.html" class="nav-link">➡️ Phase 4 预览</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>🎬 ScriptForge - AI 互动剧本工具</p>
+    </footer>
+</body>
+</html>

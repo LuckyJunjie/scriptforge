@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 5-7: 阅读器+分享+后台+部署 | ScriptForge</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #6366f1; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --bg-dark: #0f172a; --bg-card: #1e293b; --bg-input: #334155; --text-primary: #f8fafc; --text-secondary: #94a3b8; --border: #334155; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg-dark); color: var(--text-primary); }
+        .header { background: rgba(30,41,59,0.95); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+        .logo { font-size: 24px; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px; }
+        .hero { text-align: center; padding: 40px 0; }
+        .hero h1 { font-size: 36px; margin-bottom: 12px; }
+        .hero p { color: var(--text-secondary); }
+        
+        .phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .phase-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.3s; }
+        .phase-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+        .phase-num { width: 44px; height: 44px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 16px; }
+        .phase-card h2 { font-size: 20px; margin-bottom: 8px; }
+        .phase-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+        .features { display: flex; flex-wrap: wrap; gap: 8px; }
+        .feature { background: var(--bg-input); padding: 6px 14px; border-radius: 20px; font-size: 13px; color: var(--text-secondary); }
+        
+        .phone-preview { width: 300px; height: 580px; background: #000; border-radius: 36px; padding: 12px; margin: 40px auto; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .phone-screen { width: 100%; height: 100%; background: var(--bg-dark); border-radius: 28px; overflow: hidden; position: relative; }
+        .phone-content { padding: 20px; }
+        .phone-scene { font-size: 13px; color: var(--warning); font-weight: 600; margin-bottom: 16px; }
+        .phone-text { font-size: 13px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 20px; }
+        .phone-divider { height: 1px; background: var(--border); margin: 20px 0; }
+        .phone-question { font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+        .phone-choice { background: var(--bg-card); border: 2px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+        .phone-footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px; background: var(--bg-card); display: flex; justify-content: space-around; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); }
+        
+        .admin-preview { background: var(--bg-card); border-radius: 16px; padding: 24px; margin: 24px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: var(--bg-input); border-radius: 12px; padding: 20px; text-align: center; }
+        .stat-value { font-size: 28px; font-weight: 700; }
+        .stat-label { font-size: 12px; color: var(--text-muted); }
+        
+        .nav-links { display: flex; justify-content: center; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+        .nav-link { padding: 12px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text-secondary); text-decoration: none; }
+        .nav-link:hover { background: var(--primary); color: white; }
+        footer { text-align: center; padding: 40px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">🎬 ScriptForge</div>
+    </header>
+    <div class="container">
+        <section class="hero">
+            <h1>📱 Phase 5-7: 后续阶段预览</h1>
+            <p>阅读器 · 分享系统 · 运营后台 · 部署测试</p>
+        </section>
+        
+        <div class="phases">
+            <div class="phase-card">
+                <div class="phase-num">5</div>
+                <h2>Phase 5: 阅读器 + 分享</h2>
+                <p>移动端阅读器、分享链接系统、数据统计分析</p>
+                <div class="features">
+                    <span class="feature">📱 阅读器</span>
+                    <span class="feature">🔗 短链接</span>
+                    <span class="feature">📊 统计</span>
+                    <span class="feature">🔐 密码保护</span>
+                </div>
+            </div>
+            <div class="phase-card">
+                <div class="phase-num">6</div>
+                <h2>Phase 6: 运营后台</h2>
+                <p>用户管理、内容审核、数据分析、模板管理</p>
+                <div class="features">
+                    <span class="feature">👥 用户</span>
+                    <span class="feature">✅ 审核</span>
+                    <span class="feature">📈 数据</span>
+                    <span class="feature">📋 模板</span>
+                </div>
+            </div>
+            <div class="phase-card">
+                <div class="phase-num">7</div>
+                <h2>Phase 7: 部署测试</h2>
+                <p>Docker 容器化、CI/CD 流水线、自动化测试、监控</p>
+                <div class="features">
+                    <span class="feature">🐳 Docker</span>
+                    <span class="feature">⚡ CI/CD</span>
+                    <span class="feature">🧪 测试</span>
+                    <span class="feature">📦 部署</span>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="text-align: center; margin: 50px 0 20px;">📱 阅读器预览</h2>
+        <div class="phone-preview">
+            <div class="phone-screen">
+                <div class="phone-content">
+                    <div class="phone-scene">【深夜·主角家中】</div>
+                    <div class="phone-text">门外传来急促的敲门声...<br><br>主角："谁啊？..."</div>
+                    <div class="phone-divider"></div>
+                    <div class="phone-question">你想怎么做？</div>
+                    <div class="phone-choice"><strong>A. 开门去看看</strong><div style="font-size:11px;color:var(--text-muted);margin-top:6px;">56% 选择</div></div>
+                    <div class="phone-choice"><strong>B. 不予理会</strong><div style="font-size:11px;color:var(--text-muted);margin-top:6px;">44% 选择</div></div>
+                </div>
+                <div class="phone-footer">
+                    <span>👁 1.2k</span>
+                    <span>💬 23</span>
+                    <span>⭐ 4.8</span>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="text-align: center; margin: 50px 0 20px;">📊 运营后台预览</h2>
+        <div class="admin-preview">
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-value" style="color:var(--primary)">1,234</div><div class="stat-label">DAU</div></div>
+                <div class="stat-card"><div class="stat-value" style="color:var(--success)">+156</div><div class="stat-label">新增用户</div></div>
+                <div class="stat-card"><div class="stat-value" style="color:var(--warning)">68%</div><div class="stat-label">留存率</div></div>
+                <div class="stat-card"><div class="stat-value" style="color:var(--secondary)">5.2%</div><div class="stat-label">付费率</div></div>
+            </div>
+        </div>
+        
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">🏠 返回总览</a>
+            <a href="phase1-preview.html" class="nav-link">Phase 1</a>
+            <a href="phase2-preview.html" class="nav-link">Phase 2</a>
+            <a href="phase3-preview.html" class="nav-link">Phase 3</a>
+        </div>
+    </div>
+    <footer><p>🎬 ScriptForge - AI 互动剧本工具</p></footer>
+</body>
+</html>
