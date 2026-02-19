@@ -39,20 +39,15 @@ AI 互动剧本工具是一个支持 AI 生成、剧情树编辑、多模型切�
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-repo/scriptforge.git
+git clone https://github.com/LuckyJunjie/scriptforge.git
 cd scriptforge
 ```
 
 ### 2. 启动后端服务
 
 ```bash
-# 进入后端目录
 cd backend
-
-# 安装依赖
 npm install
-
-# 启动服务
 npm start
 ```
 
@@ -122,45 +117,20 @@ npm start
 ### 1. 构建镜像
 
 ```bash
-# 构建后端镜像
 docker build -t scriptforge-backend ./backend
-
-# 或使用 docker-compose 启动全部服务
 docker-compose up -d
 ```
 
 ### 2. 启动服务
 
 ```bash
-# 后端服务
 docker run -d -p 3000:3000 scriptforge-backend
-
-# 或启动全部 (后端 + Nginx)
-docker-compose up -d
 ```
 
 ### 3. 访问服务
 
 - 后端 API: http://localhost:3000
-- 前端: http://localhost (需配置 Nginx)
-
-## 本地开发
-
-### 后端开发
-
-```bash
-cd backend
-npm install
-npm run dev  # 开发模式 (热重载)
-```
-
-### 前端开发 (Vue 3)
-
-```bash
-cd frontend
-npm install
-npm run dev  # 启动开发服务器
-```
+- 前端: http://localhost
 
 ## 项目结构
 
@@ -169,7 +139,6 @@ scriptforge/
 ├── backend/                 # 后端服务
 │   ├── server.js           # 主服务文件
 │   ├── test/               # 测试文件
-│   │   └── index.js        # API 测试套件
 │   ├── package.json        # 依赖配置
 │   ├── Dockerfile          # Docker 配置
 │   └── scriptforge.db      # SQLite 数据库
@@ -182,17 +151,17 @@ scriptforge/
 │   │   ├── stores/        # 状态管理
 │   │   ├── router/        # 路由配置
 │   │   └── types/         # TypeScript 类型
-│   ├── package.json
-│   └── vite.config.ts
+│   └── package.json
+│
+├── spring-boot/            # Spring Boot 后端 (v2.0)
+│   ├── pom.xml
+│   └── src/main/
 │
 ├── docs/                  # 开发文档
-│   ├── phase1-7-*.md      # 各阶段报告
-│   └── phase*-preview.html # 预览页面
+│   └── schema.sql         # MySQL 数据库设计
 │
 ├── demo.html              # 演示页面
-├── index.html             # 旧版演示
 ├── docker-compose.yml     # Docker Compose 配置
-├── nginx.conf             # Nginx 配置
 └── README.md              # 本文件
 ```
 
@@ -206,30 +175,14 @@ scriptforge/
 | Phase 4 | 剧情树编辑器 | ✅ 完成 |
 | Phase 5 | 阅读器 + 分享 | ✅ 完成 |
 | Phase 6 | 运营后台 | ✅ 完成 |
-| Phase 7 | 部署测试 | 🔄 进行中 |
+| Phase 7 | 部署测试 | ✅ 完成 |
 
 ## 运行测试
 
 ```bash
-# 后端测试
 cd backend
 npm test
 ```
-
-测试覆盖:
-- ✅ 用户认证 (注册/登录/JWT)
-- ✅ 剧本 CRUD
-- ✅ AI 生成/续写/润色
-- ✅ 管理员功能
-- ✅ 权限控制
-
-## 性能指标
-
-| 指标 | 目标 | 实际 |
-|------|------|------|
-| API 响应时间 | < 200ms | ~50ms |
-| 页面加载 | < 2s | ~500ms |
-| 并发用户 | 100+ | 待测试 |
 
 ## 许可证
 
@@ -237,5 +190,4 @@ MIT License
 
 ## 联系方式
 
-- Email: support@scriptforge.app
-- GitHub: https://github.com/your-repo/scriptforge
+- GitHub: https://github.com/LuckyJunjie/scriptforge
